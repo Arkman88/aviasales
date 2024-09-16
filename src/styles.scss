@@ -5,9 +5,9 @@ body {
 }
 
 #root {
-  margin: 0 auto; /* Выровнять контейнер по центру */
+  margin: 0 auto;
   width: 1000px;
-  min-height: 100vh; /* Высота контейнера не ограничена */
-  background-color: #f5f9fc; /* Ограничить цвет по ширине контейнера */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Добавить тень для акцента */
+  min-height: 100vh; 
+  background-color: #f5f9fc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
