@@ -1,0 +1,36 @@
+.TransfersFilter {
+  :global {
+    background-color: #f5f9fc;
+    border: none !important;
+    .ant-menu-item-group-title {
+      color: black;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .ant-menu-item-group {
+      height: auto;
+      background-color: #fff;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      border: 1px solid #dfe5ec;
+      border-radius: 5px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      padding: 5px;
+    }
+    .ant-checkbox-wrapper {
+      display: flex;
+    }
+    .ant-menu-item {
+      height: auto;
+      padding: 0;
+
+      background-color: #fff;
+    }
+
+    .ant-checkbox {
+      margin-right: 8px;
+    }
+  }
+}

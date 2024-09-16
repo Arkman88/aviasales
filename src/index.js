@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from './components/app';
+import './styles.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -11,7 +10,31 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// import fetchData from "./services/service";
+
+// const fetchID = async () => {
+//   const url = 'https://aviasales-test-api.kata.academy/search';
+//   try {
+//     const data = await fetchData(url);
+//     const { searchId } = data;
+
+//     return searchId;
+//   }
+//   catch (error) {
+//     console.error(error)
+//   }
+// }
+
+// const fetchTickets = async (url) => {
+//   try {
+//     const ID = await fetchID();
+//     const ticket_url = `https://aviasales-test-api.kata.academy/tickets?searchId=${ID}`;
+//     const data = await fetchData(ticket_url);
+//     console.log(data);
+
+//   }
+//   catch (error) {
+//     console.error(error)
+//   }
+// }
+// fetchTickets();

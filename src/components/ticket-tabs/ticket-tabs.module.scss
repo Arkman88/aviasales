@@ -1,0 +1,32 @@
+.customTabs {
+  :global {
+    .ant-tabs-nav-wrap {
+      border-radius: 5px;
+      border: 1px solid #dfe5ec;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .ant-tabs-tab {
+      background-color: #fff;
+      padding: 10px 20px;
+      border-left: 1px solid #dfe5ec;
+      transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
+      margin: 0 !important;
+    }
+
+    .ant-tabs-tab-active {
+      background-color: #2196f3;
+      transform: scale(1.1);
+      z-index: 1;
+
+      :where(.ant-tabs-tab-btn) {
+        color: white !important;
+      }
+    }
+
+    .ant-tabs-ink-bar {
+      display: none;
+    }
+  }
+}
