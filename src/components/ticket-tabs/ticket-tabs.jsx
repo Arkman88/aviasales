@@ -1,30 +1,26 @@
 import { Tabs } from 'antd';
+import { useDispatch } from 'react-redux';
+import { setSortBy } from '../../store/slices/sortSlice';
 import styles from './ticket-tabs.module.scss';
 
-const Cheapest = () => <div>Самый дешёвый</div>;
-const Fastest = () => <div>Самый быстрый</div>;
-const Optimal = () => <div>Самый оптимальный</div>;
-
 const TicketTabs = () => {
+  const dispatch = useDispatch();
+
+  const handleChange = (key) => {
+    console.log(`Текущий таб: ${key}`); // не забыть удалить!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    if (key === '1') dispatch(setSortBy('cheapest'));
+    if (key === '2') dispatch(setSortBy('fastest'));
+    if (key === '31') dispatch(setSortBy('optimal'));
+  };
+
   const items = [
-    {
-      label: 'Самый дешевый',
-      key: '1',
-      children: <Cheapest />,
-    },
-    {
-      label: 'Самый быстрый',
-      key: '2',
-      children: <Fastest />,
-    },
-    {
-      label: 'Оптимальный',
-      key: '3',
-      children: <Optimal />,
-    },
+    { label: 'Самый дешёвый', key: '1' },
+    { label: 'Самый быстрый', key: '2' },
+    { label: 'Оптимальный', key: '3' },
   ];
 
-  return <Tabs defaultActiveKey="1" centered className={styles.customTabs} items={items} />;
+  return <Tabs defaultActiveKey="1" centered className={styles.customTabs} items={items} onChange={handleChange} />;
 };
 
 export default TicketTabs;

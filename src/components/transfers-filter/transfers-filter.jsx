@@ -1,20 +1,23 @@
 import { Checkbox, Menu } from 'antd';
-import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCheckedList, setCheckAll } from '../../store/slices/filterSlice';
+
 import styles from './transfers-filter.module.scss';
 
 const TransfersFilter = () => {
   const options = ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'];
-  const [checkedList, setCheckedList] = useState([]);
-  const [checkAll, setCheckAll] = useState(false);
+
+  const dispatch = useDispatch();
+  const { checkedList, checkAll } = useSelector((state) => state.filters);
 
   const onChange = (checkedValues) => {
-    setCheckedList(checkedValues);
-    setCheckAll(checkedValues.length === options.length);
+    dispatch(setCheckedList(checkedValues));
+    dispatch(setCheckAll(checkedValues.length === options.length));
   };
 
   const onCheckAllChange = (e) => {
-    setCheckedList(e.target.checked ? options : []);
-    setCheckAll(e.target.checked);
+    dispatch(setCheckedList(e.target.checked ? options : []));
+    dispatch(setCheckAll(e.target.checked));
   };
 
   const menuItems = [
