@@ -4,7 +4,7 @@ import styles from './ticket.module.scss';
 
 const Ticket = ({ ticket }) => {
   const { price, carrier, segments } = ticket;
-  const carrierLogo = `http://pics.avs.io/110/36/${carrier}.png`;
+  const carrierLogo = `https://pics.avs.io/110/36/${carrier}.png`;
 
   const formatDuration = (duration) => {
     const hours = Math.floor(duration / 60);
