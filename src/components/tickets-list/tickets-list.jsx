@@ -70,8 +70,10 @@ const TicketsList = () => {
   return (
     <div className={styles.TicketsList}>
       <TicketTabs />
-
-      <p className={styles.message}>{loadMessage}</p>
+      <div className={styles['message-wrapper']}>
+        <p className={styles.message}>{loadMessage}</p>
+        <p className={styles.message}>Загружено:{allTickets.length}</p>
+      </div>
 
       {visibleTickets.length > 0
         ? visibleTickets.map((ticket, index) => <Ticket key={index} ticket={ticket} />)
