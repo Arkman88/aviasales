@@ -1,17 +1,17 @@
 import { Tabs } from 'antd';
 import { useDispatch } from 'react-redux';
-import { setSortBy } from '../../store/slices/sortSlice';
+import { setSortBy } from '../../store/slices/ticketsSlice';
 import styles from './ticket-tabs.module.scss';
 
 const TicketTabs = () => {
   const dispatch = useDispatch();
 
   const handleChange = (key) => {
-    console.log(`Текущий таб: ${key}`); // не забыть удалить!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    console.log(`Текущий таб: ${key}`); // не забыть удалить!
 
     if (key === '1') dispatch(setSortBy('cheapest'));
     if (key === '2') dispatch(setSortBy('fastest'));
-    if (key === '31') dispatch(setSortBy('optimal'));
+    if (key === '3') dispatch(setSortBy('optimal'));
   };
 
   const items = [

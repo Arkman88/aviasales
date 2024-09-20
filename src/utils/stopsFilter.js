@@ -1,5 +1,5 @@
 export const filterTicketsByStops = (tickets, checkedList) => {
-  if (checkedList.length === 0) return tickets;
+  if (checkedList.length === 0) return [];
 
   return tickets.filter((ticket) => {
     const firstSegmentStopsCount = ticket.segments[0].stops.length;
