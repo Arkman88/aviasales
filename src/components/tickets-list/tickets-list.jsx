@@ -72,7 +72,7 @@ const TicketsList = () => {
       <TicketTabs />
       <div className={styles['message-wrapper']}>
         <p className={styles.message}>{loadMessage}</p>
-        <p className={styles.message}>Загружено:{allTickets.length}</p>
+        <p className={styles.message}>Загружено: {allTickets.length}</p>
       </div>
 
       {visibleTickets.length > 0
