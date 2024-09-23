@@ -51,9 +51,7 @@ const TicketsList = () => {
   useEffect(() => {
     if (ticketsError || searchError) {
       const errorMessage =
-        ticketsError?.status === 500
-          ? 'Сервер не отвечает. Повторный запрос через 2 секунды.'
-          : 'Ошибка загрузки данных.';
+        ticketsError?.status === 500 ? 'Сервер не отвечает. Повторный запрос.' : 'Ошибка загрузки данных.';
       setLoadMessage(errorMessage);
     }
   }, [ticketsError, searchError]);
