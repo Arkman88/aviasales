@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   tickets: [],
   sortBy: 'cheapest',
-  stop: false,
 };
 
 const ticketsSlice = createSlice({
