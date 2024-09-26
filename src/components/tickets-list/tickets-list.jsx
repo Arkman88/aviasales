@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Ticket from '../ticket/ticket';
 import TicketTabs from '../ticket-tabs/ticket-tabs';
-import { setTickets, setStop } from '../../store/slices/ticketsSlice';
+import { setTickets } from '../../store/slices/ticketsSlice';
 import { useGetSearchIdQuery, useLazyGetTicketsQuery } from '../../utils/ticketsApi';
 import { filterTicketsByStops } from '../../utils/stopsFilter';
 import { sortTickets } from '../../utils/ticketsSort';
@@ -27,7 +27,6 @@ const TicketsList = () => {
       setLoadMessage('Идёт загрузка билетов с сервера');
 
       if (response.data.stop) {
-        dispatch(setStop(true));
         setLoadMessage('Загрузка билетов завершена');
       } else {
         fetchTickets(searchId);

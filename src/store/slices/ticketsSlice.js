@@ -16,11 +16,8 @@ const ticketsSlice = createSlice({
     setSortBy: (state, action) => {
       state.sortBy = action.payload;
     },
-    setStop(state, action) {
-      state.stop = action.payload;
-    },
   },
 });
 
-export const { setTickets, setSortBy, setStop } = ticketsSlice.actions;
+export const { setTickets, setSortBy } = ticketsSlice.actions;
 export default ticketsSlice.reducer;
