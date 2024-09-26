@@ -7,8 +7,6 @@ const TicketTabs = () => {
   const dispatch = useDispatch();
 
   const handleChange = (key) => {
-    console.log(`Текущий таб: ${key}`);
-
     if (key === '1') dispatch(setSortBy('cheapest'));
     if (key === '2') dispatch(setSortBy('fastest'));
     if (key === '3') dispatch(setSortBy('optimal'));
