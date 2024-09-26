@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import filterReducer from './slices/filterSlice';
 import ticketsReducer from './slices/ticketsSlice';
 import { ticketsApi } from '../utils/ticketsApi';
-import logger from 'redux-logger';
 
 const store = configureStore({
   reducer: {
@@ -10,7 +9,8 @@ const store = configureStore({
     tickets: ticketsReducer,
     [ticketsApi.reducerPath]: ticketsApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(ticketsApi.middleware, logger),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }).concat(ticketsApi.middleware),
 });
 
 export default store;

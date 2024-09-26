@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  checkedList: [],
-  checkAll: false,
+  checkedList: ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'],
+  checkAll: true,
 };
 
 const filterSlice = createSlice({

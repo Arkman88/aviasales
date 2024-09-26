@@ -11,54 +11,44 @@ import styles from './tickets-list.module.scss';
 
 const TicketsList = () => {
   const dispatch = useDispatch();
-  const { data: searchData, error: searchError } = useGetSearchIdQuery();
-  const [trigger, { data: ticketsData, error: ticketsError, isFetching: isTicketsLoading }] = useLazyGetTicketsQuery();
+  const { data: searchData } = useGetSearchIdQuery();
+  const [trigger, { isFetching: isTicketsLoading }] = useLazyGetTicketsQuery();
 
-  const stop = useSelector((state) => state.tickets.stop);
   const checkedList = useSelector((state) => state.filters.checkedList);
   const allTickets = useSelector((state) => state.tickets.tickets);
   const sortBy = useSelector((state) => state.tickets.sortBy);
   const [visibleTicketsCount, setVisibleTicketsCount] = useState(5);
   const [loadMessage, setLoadMessage] = useState('Идёт загрузка билетов с сервера');
 
-  useEffect(() => {
-    if (searchData && searchData.searchId && !stop) {
-      const intervalId = setInterval(() => {
-        trigger(searchData.searchId);
-      }, 2000);
-      return () => clearInterval(intervalId);
-    }
-  }, [searchData, trigger, stop]);
-
-  useEffect(() => {
-    if (ticketsData && ticketsData.tickets) {
-      dispatch(setTickets(ticketsData.tickets));
+  const fetchTickets = async (searchId) => {
+    const response = await trigger(searchId);
+    if (response.data) {
+      dispatch(setTickets(response.data.tickets));
       setLoadMessage('Идёт загрузка билетов с сервера');
 
-      if (ticketsData.stop) {
+      if (response.data.stop) {
         dispatch(setStop(true));
         setLoadMessage('Загрузка билетов завершена');
+      } else {
+        fetchTickets(searchId);
       }
-    } else if (ticketsError && ticketsError.status === 500) {
-      const timeoutId = setTimeout(() => {
-        trigger(searchData.searchId);
-      }, 2000);
-
-      return () => clearTimeout(timeoutId);
+    } else if (response.error) {
+      if (response.error.status === 500) {
+        fetchTickets(searchId);
+      } else {
+        setLoadMessage('Ошибка загрузки данных.');
+      }
     }
-  }, [ticketsData, ticketsError, dispatch, searchData, trigger, searchError]);
+  };
 
   useEffect(() => {
-    if (ticketsError || searchError) {
-      const errorMessage =
-        ticketsError?.status === 500 ? 'Сервер не отвечает. Повторный запрос.' : 'Ошибка загрузки данных.';
-      setLoadMessage(errorMessage);
+    if (searchData && searchData.searchId) {
+      fetchTickets(searchData.searchId);
     }
-  }, [ticketsError, searchError]);
+  }, [searchData]);
 
   const filteredTickets = filterTicketsByStops(allTickets, checkedList);
   const sortedTickets = sortTickets(filteredTickets, sortBy);
-
   const visibleTickets = sortedTickets.slice(0, visibleTicketsCount);
 
   const handleLoadMoreTickets = () => {
